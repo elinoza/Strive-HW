@@ -19,7 +19,7 @@ class SingleBook extends React.Component {
 
   render() {
     return (
-      <>
+      <div onClick={this.props.onClick}>
        {/* {
                     this.state.selected && (
                       
@@ -48,7 +48,7 @@ class SingleBook extends React.Component {
           <Card.Text>${this.props.book.price}</Card.Text>
         </Card.Body>
       </Card>
-      </>
+      </div>
     );
   }
 }
