@@ -5,6 +5,7 @@ import Header from "./components/Header"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./components/Home"
 import Details from "./components/Details"
+import AddProduct from "./components/AddProduct"
 function App() {
   return (
     <div className="App">
@@ -15,7 +16,8 @@ function App() {
             exact
             render ={(props)=><Home {...props} />}
           />
-           <Route path="/details/:id" component={Details} />
+        <Route path="/details/:id" component={Details} />  
+       
   
     </Router>
     </div>

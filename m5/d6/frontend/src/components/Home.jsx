@@ -23,7 +23,7 @@ class Home extends React.Component {
 
             <Row className="d-flex justify-content-around">
               <Product {...this.props} />
-              <Product {...this.props} />
+             
             </Row>
             {/* <div className="home_row">
 

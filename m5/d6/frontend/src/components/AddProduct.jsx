@@ -10,7 +10,8 @@ class AddProduct extends React.Component {
       description: "",
       brand: "",
       price: "",
-      category: "book",
+      categoryId: 1,
+      image:""
     },
     formData: null,
     show: false,
@@ -19,14 +20,17 @@ class AddProduct extends React.Component {
     let product = { ...this.state.product };
     let currentid = e.currentTarget.id;
 
+
     product[currentid] = e.currentTarget.value;
+   
 
     this.setState({ product: product });
   };
 
   handleDelete = async () => {
+    const url= process.env.REACT_APP_URL
     try {
-      const url = `http://localhost:4001/products/${this.props._id}`;
+      const url = `${url}/products/${this.props._id}`;
       let response = await fetch(url, {
         method: "DELETE",
         headers: {},
@@ -43,8 +47,9 @@ class AddProduct extends React.Component {
   };
 
   EditFetch = async () => {
+    const url= process.env.REACT_APP_URL
     try {
-      let response = await fetch(`http://localhost:4001/products`, {
+      let response = await fetch(`${url}/products`, {
         method: "POST",
         body: JSON.stringify(this.state.product),
         headers: new Headers({
@@ -62,7 +67,8 @@ class AddProduct extends React.Component {
             description: "",
             brand: "",
             price: "",
-            category: "",
+            categoryId: "",
+            image:""
           },
           errMessage: "",
           loading: false,
@@ -92,10 +98,12 @@ class AddProduct extends React.Component {
   };
 
   UploadImageFetch = async (id) => {
+    const url= process.env.REACT_APP_URL
    
     try{
+      
     let response = await fetch(
-      `http://localhost:4001/products/${id}/upload`,
+      `${url}/products/${id}/image/upload`,
 
     {
       method: "POST",
@@ -115,19 +123,21 @@ class AddProduct extends React.Component {
       
   };
 
+  PostProduct = async () => {
+    let ProductId = await this.EditFetch();
+    console.log(ProductId)
+   this.UploadImageFetch(ProductId.id);
+    
+    
+  };
+
   submitForm = (e) => {
     e.preventDefault();
     this.setState({ loading: true });
-    this.postProduct()
+    this.PostProduct()
   };
-  postProduct = async () => {
-    let ProductId = await this.EditFetch();
-    console.log(ProductId)
-   this.UploadImageFetch(ProductId._id);
-    
-    
-  };
-  //
+
+
 
   handleShow = () => this.setState({ show: true });
   handleClose = () => this.setState({ show: false });
@@ -219,13 +229,14 @@ class AddProduct extends React.Component {
                     as="select"
                     name="category"
                     id="category"
-                    value={this.state.product.category}
+                    // value={this.state.product.category}
                     onChange={this.updateField}
                   >
-                    <option>Books</option>
-                    <option>Electronics</option>
-                    <option>Home</option>
-                    <option>Clothes</option>
+                    
+                    <option value={1}>Books</option>
+                    <option value={2}>Electronics</option>
+                    <option value={3}>Home</option>
+                    <option value={4}>Clothes</option>
                   </Form.Control>
                 </Form.Group>
                 <Form.Group className="d-flex px-3">
