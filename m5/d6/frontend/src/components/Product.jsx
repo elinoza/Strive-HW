@@ -48,6 +48,8 @@ class Product extends React.Component {
     }
   };
 
+
+
   render() {
     console.log(this.props.history);
     return (
@@ -62,9 +64,9 @@ class Product extends React.Component {
                 <Card.Text>
                 {product.description} 
                 Brand:{product.brand}
-                <p className="text-center text-muted">{product.price}</p>
+                <p className="text-center text-muted">Price:${product.price}</p>
                 </Card.Text>
-                <p className="text-center text-muted">{product.price}</p>
+               
                 <Button variant="danger" onClick={() =>
             this.props.history.push(`/details/${product.id}`)
           }>Go to details</Button>

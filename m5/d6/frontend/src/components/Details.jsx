@@ -253,9 +253,9 @@ export default class Details extends Component {
                 <FaUser style={{fontSize:"35px"}}/>
                 <Media.Body>
                   <h5>
-                    {e.name} -- <Badge className="rateBadge">{e.rate}</Badge>
+                    <Badge className="rateBadge">Rate:{e.rate}</Badge>
                   </h5>
-                  <p>{e.comment}</p>
+                  <p>Comment:{e.comment}</p>
                   <p>User:{e.userId}</p>
                 </Media.Body>
                 <div className="ml-auto">
